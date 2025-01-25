@@ -17,7 +17,9 @@
             const app = initializeApp(firebaseConfig);
             const auth = getAuth(app);
             const provider = new GoogleAuthProvider();
-            signInWithRedirect(auth, provider);
+            function login() {
+                signInWithRedirect(auth, provider);
+            }
             getRedirectResult(auth)
             .then((result) => {
                 if (result) {
@@ -28,6 +30,13 @@
             .catch((error) => {
                 console.error('Error during login:', error);
             });
+            onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log('User is already signed in:', user);
+                window.location.href = 'home.html';
+            }
+            });
+            login()
           </script>
     </body>
 </html>
