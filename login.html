@@ -28,6 +28,12 @@
             .catch((error) => {
                 console.error('Error during login:', error);
             });
+            onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log('User is already signed in:', user);
+                window.location.href = 'home.html';
+            }
+        });
           </script>
     </body>
 </html>
