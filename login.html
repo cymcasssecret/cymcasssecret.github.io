@@ -22,7 +22,7 @@
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     console.log('User is already signed in:', user);
-                    window.location.href = 'home';
+                    window.location.href = 'home.html';
                 } else {
                     signInWithRedirect(auth, provider);
                 }
@@ -32,7 +32,7 @@
                 .then((result) => {
                     if (result) {
                         console.log('User signed in:', result.user);
-                        window.location.href = 'home';
+                        window.location.href = 'home.html';
                     }
                 })
                 .catch((error) => {
