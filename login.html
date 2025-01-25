@@ -24,7 +24,7 @@
             .then((result) => {
                 if (result) {
                     console.log('User signed in:', result.user);
-                    window.location.href = 'home.html'; 
+                    window.location.href = 'https://cymcasssecret.github.io/home.html'; 
                 }
             })
             .catch((error) => {
@@ -33,7 +33,7 @@
             onAuthStateChanged(auth, (user) => {
             if (user) {
                 console.log('User is already signed in:', user);
-                window.location.href = 'home.html';
+                window.location.href = 'https://cymcasssecret.github.io/home.html';
             }
             });
             login()
