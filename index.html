@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cymcass Secret</title>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        <h1 id="title">cymcassSecret.github.io</h1>
+        <div class="card">
+            <h2 id="info1">Post anything you want here~</h2>
+            <h2 id="info2">Emails would not be collected</h2>
+            <h2 id="info3">~~STUDENTS ONLY~~</h2>
+            <button id="button">Sign In Via Google</button>
+        </div>
+        <select id="lang-sel">
+            <option value="en">English</option>
+            <option value="cn">中文</option>
+        </select>
+
+        <script>
+            function cycleTitle(lang) {
+            setInterval(() => {
+                titleIndex = (titleIndex + 1) % translations[lang].title.length;
+                titleElement.innerText = translations[lang].title[titleIndex];
+            }, 5000);
+        }
+        </script>
+
+        <script>
+            const translations = {
+                en: {
+                    title: ["cymcassSecret.github.io", "CYMCASS.SECRETS"],
+                    info1: "Post anything you want here~",
+                    info2: "Emails would not be collected",
+                    info3: "~~CYMCASS ONLY~~",
+                    button: "Sign In Via Google"
+                },
+                cn: {
+                    title: ["cymcassSecret.github.io", "CYMCASS.SECRETS"],
+                    info1: "發啥都可以",
+                    info2: "不會收集個資",
+                    info3: "~~CYMCASS ONLY~~",
+                    button: "用谷歌登入"
+                }
+            };
+
+            const langSelector = document.getElementById("lang-sel");
+            const titleElement = document.getElementById("title");
+            let titleIndex = 0;
+    
+            langSelector.addEventListener("change", function() {
+                const lang = this.value;
+                titleIndex = 0;
+                titleElement.innerText = translations[lang].title[titleIndex];
+                cycleTitle(lang);
+                document.getElementById("info1").innerText = translations[lang].info1;
+                document.getElementById("info2").innerText = translations[lang].info2;
+                document.getElementById("info3").innerText = translations[lang].info3;
+                document.getElementById("button").innerText = translations[lang].button;
+            });
+            
+            //default lang
+            langSelector.value = "en";
+            titleElement.innerText = translations.en.title[titleIndex];
+            cycleTitle("en");
+        </script>
+    </body>
+</html>
