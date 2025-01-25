@@ -4,7 +4,7 @@
     <body>
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-            import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+            import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
             const firebaseConfig = {
                 //god damn putting api key in plain js is stupid
               apiKey: "AIzaSyB0NJfpfMDWjd77NZ8xsOM37BTuAky4czU",
@@ -14,26 +14,19 @@
               messagingSenderId: "75124733607",
               appId: "1:75124733607:web:72b3e10b63be4e15b2cd82"
             };
+          
             const app = initializeApp(firebaseConfig);
             const auth = getAuth(app);
             const provider = new GoogleAuthProvider();
-            signInWithRedirect(auth, provider);
-            getRedirectResult(auth)
-            .then((result) => {
-                if (result) {
-                    console.log('User signed in:', result.user);
-                    window.location.href = 'home.html'; 
-                }
-            })
-            .catch((error) => {
-                console.error('Error during login:', error);
-            });
-            onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log('User is already signed in:', user);
-                window.location.href = 'home.html';
-            }
-        });
+
+            signInWithPopup(auth, provider)
+                    .then((result) => {
+                        console.log('User signed in:', result.user);
+                        window.location.href = 'home.html'; 
+                    })
+                    .catch((error) => {
+                        console.error('Error during login:', error);
+                    });
           </script>
     </body>
 </html>
