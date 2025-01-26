@@ -5,14 +5,19 @@
         <link rel="stylesheet" href="css/index.css">
     </head>
     <body>
-        <h1 id="title">cymcassSecret.github.io</h1>
+        <h1 id="title"></h1>
         <div class="card">
-            <h2 id="info1">Post anything you want here~</h2>
-            <h2 id="info2">Emails would not be collected</h2>
-            <h2 id="info3">~~STUDENTS ONLY~~</h2>
+            <h2 id="info1"></h2>
+            <h2 id="info2"></h2>
+            <h2 id="info3"></h2>
             <a href="login.html">
-                <button id="button">Sign In Via Google</button>
+                <button id="button"></button>
             </a>
+        </div>
+        <div class="card2">
+            <h2 id="info4"></h2>
+            <h2 id="info5"></h2>
+            <h2 id="info6"></h2>
         </div>
         <select id="lang-sel">
             <option value="en">English</option>
@@ -35,13 +40,19 @@
                     info1: "Post anything you want here~",
                     info2: "Emails would not be collected",
                     info3: "~~CYMCASS ONLY~~",
+                    info4: "We require you to login so that",
+                    info5: "we could confirm that you are",
+                    info6: "a student of CYMCASS",
                     button: "Sign In Via Google"
                 },
                 cn: {
                     title: ["cymcassSecret.github.io", "CYMCASS.SECRETS"],
-                    info1: "發啥都可以",
-                    info2: "不會收集個資",
+                    info1: "想說什麽說什麽，想發什麽發什麽",
+                    info2: "不會收集電郵、姓名",
                     info3: "~~CYMCASS ONLY~~",
+                    info4: "登入以確保你是一名學生",
+                    info5: "",
+                    info6: "",
                     button: "用谷歌登入"
                 }
             };
@@ -50,21 +61,29 @@
             const titleElement = document.getElementById("title");
             let titleIndex = 0;
     
+            function changeLanguage(lang) {
+                document.getElementById("info1").innerText = translations[lang].info1;
+                document.getElementById("info2").innerText = translations[lang].info2;
+                document.getElementById("info3").innerText = translations[lang].info3;
+                document.getElementById("info4").innerText = translations[lang].info4;
+                document.getElementById("info5").innerText = translations[lang].info5;
+                document.getElementById("info6").innerText = translations[lang].info6;
+                document.getElementById("button").innerText = translations[lang].button;
+            }
+
             langSelector.addEventListener("change", function() {
                 const lang = this.value;
                 titleIndex = 0;
                 titleElement.innerText = translations[lang].title[titleIndex];
                 cycleTitle(lang);
-                document.getElementById("info1").innerText = translations[lang].info1;
-                document.getElementById("info2").innerText = translations[lang].info2;
-                document.getElementById("info3").innerText = translations[lang].info3;
-                document.getElementById("button").innerText = translations[lang].button;
+                changeLanguage(lang);
             });
             
             //default lang
             langSelector.value = "en";
             titleElement.innerText = translations.en.title[titleIndex];
             cycleTitle("en");
+            changeLanguage("en");
         </script>
     </body>
 </html>

@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+h1 {
+    font-size: 24px;
+}
+
+#reason, #error {
+    color: rgb(255, 0, 0);
+}
+
+#sol {
+    color: rgb(0, 255, 0);
+}

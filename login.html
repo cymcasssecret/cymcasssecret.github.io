@@ -2,6 +2,10 @@
 <html>
     <head></head>
     <body>
+        <h1 id="error"></h1>
+        <a id="solution" href="#">
+            <h1>click to see possible solutions</h1>
+        </a>
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
             import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
@@ -30,9 +34,15 @@
                         })
                         .catch((error) => {
                             console.error('Error during login:', error);
+                            document.getElementById("error").innerText = error
+                            document.getElementById("solution").style.display = 'block';
+                            const encodedError = encodeURIComponent(error);
+                            document.getElementById("solution").href = 'errorDuringLogin.html?error=' + encodedError;
+                            console.log(document.getElementById("solution").href)
                         });
                 }
             });
+            document.getElementById("solution").style.display = 'none';
           </script>
     </body>
 </html>

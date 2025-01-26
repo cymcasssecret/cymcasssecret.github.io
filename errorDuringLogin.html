@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/errorDuringLogin.css">
+    </head>
+    <body>
+        <h1 id="error"></h1>
+        <h1 id="reason"></h1>
+        <h1 id="sol"></h1>
+
+
+        <script>
+            const reasons = {
+                'FirebaseError: Firebase: Error (auth/unauthorized-domain).': 'Unauthorized-domain, mainly caused by attempting to login from custom domains/localhost.',
+                'FirebaseError: Firebase: Error (auth/popup-blocked).': 'Popup-blocked, caused by browser blocking the login popup.'
+            };
+            const solutions = {
+                'FirebaseError: Firebase: Error (auth/unauthorized-domain).': 'Access CYMCASS.SECRETS via https://cymcasssecret.github.io/',
+                'FirebaseError: Firebase: Error (auth/popup-blocked).': 'Allow popup in your browser'
+            };
+
+            const params = new URLSearchParams(window.location.search);
+            const message = params.get('error');
+            const error = decodeURIComponent(message);
+            document.getElementById('error').textContent = error;
+            document.getElementById('reason').textContent = reasons[error];
+            document.getElementById('sol').textContent = solutions[error];
+        </script>
+    </body>
+</html>
