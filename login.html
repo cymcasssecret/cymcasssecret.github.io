@@ -4,7 +4,7 @@
     <body>
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-            import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+            import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
             const firebaseConfig = {
                 //god damn putting api keys in plain js is stupid asf
@@ -20,23 +20,22 @@
             const provider = new GoogleAuthProvider();
 
             onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    console.log('User is already signed in:', user);
-                    window.location.href = 'home.html';
-                } else {
-                    signInWithRedirect(auth, provider);
-                }
-            });
-
-            getRedirectResult(auth)
-                .then((result) => {
-                    if (result) {
+            if (user) {
+                // User is signed in, redirect to home
+                console.log('User is already signed in:', user);
+                window.location.href = 'home.html';
+            } else {
+                // User is not signed in, start the login process
+                signInWithPopup(auth, provider)
+                    .then((result) => {
                         console.log('User signed in:', result.user);
+                        // Redirect to home after signing in
                         window.location.href = 'home.html';
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error during login:', error);
+                    })
+                    .catch((error) => {
+                        console.error('Error during login:', error);
+                    });
+            }
             });
           </script>
     </body>
