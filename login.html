@@ -46,7 +46,7 @@
             function redirectToHome(gmail) {
                 const value = localStorage.getItem('denied');
                 const blocked = value !== null ? JSON.parse(value) : null;
-                if(blocked()) {
+                if(blocked) {
                     window.location.href = 'accessDenied.html';
                 }
                 if(isAccountValid(gmail)) {
