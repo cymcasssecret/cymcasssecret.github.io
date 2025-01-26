@@ -25,23 +25,44 @@
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     console.log('User is already signed in:', user);
-                    window.location.href = 'home.html';
+                    redirectToHome(user);
                 } else {
                     signInWithPopup(auth, provider)
                         .then((result) => {
                             console.log('User signed in:', result.user);
-                            window.location.href = 'home.html';
+                            redirectToHome(user);
                         })
                         .catch((error) => {
                             console.error('Error during login:', error);
-                            document.getElementById("error").innerText = error
+                            document.getElementById("error").innerText = error;
                             document.getElementById("solution").style.display = 'block';
                             const encodedError = encodeURIComponent(error);
                             document.getElementById("solution").href = 'errorDuringLogin.html?error=' + encodedError;
-                            console.log(document.getElementById("solution").href)
+                            console.log(document.getElementById("solution").href);
                         });
                 }
             });
+            function redirectToHome(user) {
+                const gmail = user.email
+                if(isAccountValid(gmail)) {
+                    window.location.href = "home.html"
+                }else {
+                    auth.signOut().then(() => {
+                        console.log("User logged out.");
+                        window.location.href = 'login.html';
+                    }).catch((error) => {
+                        console.error("Error logging out: ", error);
+                    });
+                }
+            }
+            function isAccountValid(gmail) {
+                const cond1 = gmail.startsWith('s');
+                const cond2 = gmail.endsWith('@cymcass.org');
+                const numbers = str.slice(index + 1);
+                const digits = numbers.match(/\d/g);
+                const cond3 = digits.length === 8;
+                return cond1 && cond2 && cond3;
+            }
             document.getElementById("solution").style.display = 'none';
           </script>
     </body>
