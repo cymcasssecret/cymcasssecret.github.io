@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(89, 29, 29);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1, h2 {
+    color: white;
+}
+
+#title {
+    font-size: 60px;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 20px auto;
+    width: 1000px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
