@@ -25,7 +25,7 @@
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     console.log('User is already signed in:', user);
-                    redirectToHome(user);
+                    redirectToHome(result);
                 } else {
                     signInWithPopup(auth, provider)
                         .then((result) => {
