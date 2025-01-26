@@ -30,7 +30,7 @@
                     signInWithPopup(auth, provider)
                         .then((result) => {
                             console.log('User signed in:', result.user);
-                            redirectToHome(user);
+                            redirectToHome(result);
                         })
                         .catch((error) => {
                             console.error('Error during login:', error);
@@ -42,8 +42,8 @@
                         });
                 }
             });
-            function redirectToHome(user) {
-                const gmail = user.email
+            function redirectToHome(result) {
+                const gmail = result.user.email
                 if(isAccountValid(gmail)) {
                     window.location.href = "home.html"
                 }else {
