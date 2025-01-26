@@ -58,7 +58,7 @@
             function isAccountValid(gmail) {
                 const cond1 = gmail.startsWith('s');
                 const cond2 = gmail.endsWith('@cymcass.org');
-                const numbers = str.slice(index + 1);
+                const numbers = gmail.slice(index + 1);
                 const digits = numbers.match(/\d/g);
                 const cond3 = digits.length === 8;
                 return cond1 && cond2 && cond3;
